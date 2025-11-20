@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPO SANTANA BA</title>
+    <meta name="description" content="Portal oficial de eventos, cultura, história e turismo de Santana.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>" />
+
+    <!-- Tailwind CSS (Via CDN para não precisar de build) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { background-color: #f8fafc; }
+        .hidden-section { display: none; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .nav-btn.active { color: #0ea5e9; font-weight: 600; }
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+    </style>
+</head>
+<body class="font-sans text-slate-800 flex flex-col min-h-screen">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center cursor-pointer" onclick="router.navigate('home')">
+                    <span class="font-serif text-2xl font-bold text-brand-900 tracking-tight hover:text-brand-700 transition-colors">EXPO SANTANA BA</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button onclick="router.navigate('home')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600">Home</button>
+                    <button onclick="router.navigate('events')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600">Eventos</button>
+                    <button onclick="router.navigate('businesses')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600 flex items-center gap-1"><i data-lucide="store" class="w-4 h-4"></i> Comércio</button>
+                    <button onclick="router.navigate('gallery')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600">Galeria</button>
+                    <button onclick="router.navigate('radio')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600 flex items-center gap-1"><i data-lucide="radio" class="w-4 h-4"></i> Rádio</button>
+                    <button onclick="router.navigate('history')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600">História</button>
+                    <button onclick="router.navigate('contact')" class="nav-btn px-3 py-2 rounded-md text-sm font-medium hover:text-brand-600">Contato</button>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="flex items-center lg:hidden">
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-md text-gray-400 hover:text-brand-600">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 px-2 pt-2 pb-3 space-y-1">
+             <button onclick="router.navigate('home')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Home</button>
+             <button onclick="router.navigate('events')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Eventos</button>
+             <button onclick="router.navigate('businesses')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Comércio</button>
+             <button onclick="router.navigate('gallery')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Galeria</button>
+             <button onclick="router.navigate('radio')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Rádio</button>
+             <button onclick="router.navigate('history')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">História</button>
+             <button onclick="router.navigate('contact')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-brand-50">Contato</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main id="app" class="flex-grow">
+        <!-- Pages will be injected here by JavaScript -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-900 text-brand-100 py-12 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-serif font-bold text-white">EXPO SANTANA BA</h3>
+                    <p class="text-sm text-brand-300 mt-4">Seu portal oficial para descobrir tudo o que Santana tem a oferecer.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contato</h4>
+                    <ul id="footer-contact" class="space-y-2 text-sm text-brand-300">
+                        <!-- Injected by JS -->
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/exposantana_ba" target="_blank" class="hover:text-white"><i data-lucide="instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1BhpRZf8sL/?mibextid=wwXIfr" target="_blank" class="hover:text-white"><i data-lucide="facebook"></i></a>
+                        <a href="https://x.com/exposantanaba?s=21" target="_blank" class="hover:text-white"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-brand-800 flex justify-between items-center text-xs text-brand-400">
+                <p>&copy; 2024 EXPO SANTANA BA.</p>
+                <button onclick="router.navigate('login')" class="opacity-30 hover:opacity-100">Admin</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI CHAT BUTTON & MODAL -->
+    <div id="ai-widget">
+        <button onclick="toggleChat()" class="fixed bottom-6 right-6 z-40 p-4 rounded-full shadow-lg bg-brand-600 text-white hover:bg-brand-700 transition-all flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-6 h-6"></i> <span class="hidden md:inline">Guia IA</span>
+        </button>
+        
+        <div id="chat-window" class="fixed bottom-6 right-6 w-[90vw] md:w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 hidden flex-col border border-gray-200">
+            <div class="bg-brand-600 p-4 rounded-t-2xl flex justify-between items-center text-white">
+                <h3 class="font-bold flex items-center gap-2"><i data-lucide="bot" class="w-4 h-4"></i> Guia de Santana</h3>
+                <button onclick="toggleChat()"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 text-sm">
+                <div class="flex justify-start"><div class="bg-white border p-3 rounded-2xl rounded-bl-none text-gray-800">Olá! Sou seu guia virtual. Pergunte sobre eventos, história ou locais!</div></div>
+            </div>
+            <div class="p-4 border-t flex gap-2">
+                <input type="text" id="chat-input" class="flex-1 border rounded-full px-4 py-2 text-sm focus:outline-none focus:border-brand-500" placeholder="Digite sua dúvida...">
+                <button onclick="sendMessage()" class="bg-brand-600 text-white p-2 rounded-full hover:bg-brand-700"><i data-lucide="send" class="w-4 h-4"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Tailwind Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 
+                            400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 
+                            800: '#075985', 900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#f59e0b', 600: '#d97706',
+                        }
+                    }
+                }
+            }
+        };
+
+        // --- DADOS INICIAIS (DEFAULT DATA) ---
+        const DEFAULT_DATA = {
+            events: [
+                { id: 'e1', title: 'Festival de Jazz', date: '15 Out, 19:00', location: 'Teatro Municipal', description: 'Música instrumental.', image: 'https://picsum.photos/600/400?random=30', category: 'Música' },
+                { id: 'e2', title: 'Festa da Padroeira', date: '26 Jul, 18:00', location: 'Praça da Matriz', description: 'Celebração tradicional de Senhora Sant\'Ana.', image: 'https://picsum.photos/600/400?random=31', category: 'Festival' }
+            ],
+            businesses: [
+                { id: 'b1', name: 'Supermercado Santana', category: 'Supermercado', address: 'Av. Principal, 100', phone: '(77) 3456-7890', image: 'https://picsum.photos/600/400?random=60' }
+            ],
+            history: [
+                { id: 'h1', year: '1800', title: 'Fundação', description: 'Início do povoado.' }
+            ],
+            gallery: [
+                { id: 'g1', title: 'Entardecer', photographer: 'Ana Silva', imageUrl: 'https://picsum.photos/800/600?random=50', date: '2023' }
+            ],
+            siteInfo: {
+                heroTitle: 'Descubra a Alma de Santana',
+                heroSubtitle: 'Um guia completo sobre a história, gastronomia e eventos.',
+                welcomeMessage: 'Bem-vindo ao EXPO SANTANA BA.',
+                heroBackgroundImage: 'https://picsum.photos/1920/1080?grayscale&blur=2',
+                radioUrl: 'https://www.radios.com.br/play/187832',
+                contactEmail: 'suporte@exposantanaba.com',
+                contactPhone: '(77) 1234-5678',
+                contactAddress: 'Praça da Matriz, 123, Centro, Santana'
+            }
+        };
+
+        // --- STATE MANAGEMENT (LOCALSTORAGE) ---
+        const db = {
+            get: (key) => {
+                try { return JSON.parse(localStorage.getItem('app_' + key)) || DEFAULT_DATA[key]; }
+                catch { return DEFAULT_DATA[key]; }
+            },
+            set: (key, val) => localStorage.setItem('app_' + key, JSON.stringify(val))
+        };
+
+        // Global state accessible to window
+        window.appData = {
+            events: db.get('events'),
+            businesses: db.get('businesses'),
+            history: db.get('history'),
+            gallery: db.get('gallery'),
+            siteInfo: { ...DEFAULT_DATA.siteInfo, ...db.get('siteInfo') } // Merge to ensure fields exist
+        };
+
+        // --- ROUTER ---
+        const appDiv = document.getElementById('app');
+        
+        window.router = {
+            navigate: (page) => {
+                window.scrollTo(0, 0);
+                document.getElementById('mobile-menu').classList.add('hidden');
+                renderPage(page);
+            }
+        };
+
+        function renderPage(page) {
+            appDiv.innerHTML = '';
+            appDiv.className = 'fade-in';
+            
+            // Update active nav button
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            switch(page) {
+                case 'home': renderHome(); break;
+                case 'events': renderEvents(); break;
+                case 'businesses': renderBusinesses(); break;
+                case 'gallery': renderGallery(); break;
+                case 'radio': renderRadio(); break;
+                case 'history': renderHistory(); break;
+                case 'contact': renderContact(); break;
+                case 'login': renderLogin(); break;
+                case 'admin': renderAdmin(); break;
+                default: renderHome();
+            }
+            lucide.createIcons();
+            updateFooter();
+        }
+
+        // --- RENDER FUNCTIONS ---
+        
+        function renderHome() {
+            const { siteInfo } = window.appData;
+            appDiv.innerHTML = `
+                <section class="relative h-[600px] flex items-center justify-center text-center px-4 overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <img src="${siteInfo.heroBackgroundImage}" class="w-full h-full object-cover brightness-50">
+                        <div class="absolute inset-0 bg-brand-900/40 mix-blend-multiply"></div>
+                    </div>
+                    <div class="relative z-10 max-w-4xl mx-auto text-white space-y-6">
+                        <h1 class="text-5xl md:text-7xl font-serif font-bold drop-shadow-lg">${siteInfo.heroTitle}</h1>
+                        <p class="text-lg md:text-xl text-brand-50 font-light max-w-2xl mx-auto">${siteInfo.heroSubtitle}</p>
+                        <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
+                            <button onclick="router.navigate('events')" class="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-full shadow-lg">Próximos Eventos</button>
+                            <button onclick="router.navigate('gallery')" class="px-8 py-4 bg-white/10 border border-white/30 hover:bg-white/20 text-white font-bold rounded-full shadow-lg">Galeria</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="max-w-7xl mx-auto px-4 py-12 text-center">
+                    <h2 class="text-3xl font-bold text-brand-900">Bem-vindo</h2>
+                    <p class="mt-4 text-gray-600">${siteInfo.welcomeMessage}</p>
+                </section>
+            `;
+        }
+
+        function renderEvents() {
+            const list = window.appData.events.map(e => `
+                <div class="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col md:flex-row overflow-hidden">
+                    <img src="${e.image}" class="w-full md:w-1/3 h-48 object-cover">
+                    <div class="p-6 flex flex-col justify-center">
+                        <span class="text-accent-600 font-bold text-sm mb-2">${e.date} | ${e.category}</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">${e.title}</h3>
+                        <p class="text-gray-600 mb-2">${e.description}</p>
+                        <p class="text-sm text-gray-500"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${e.location}</p>
+                    </div>
+                </div>
+            `).join('');
+            appDiv.innerHTML = `<div class="max-w-7xl mx-auto px-4 py-12"><h1 class="text-4xl font-bold mb-8 text-brand-900">Eventos</h1><div class="space-y-6">${list || '<p>Nenhum evento.</p>'}</div></div>`;
+        }
+
+        function renderBusinesses() {
+            const list = window.appData.businesses.map(b => `
+                <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
+                    <div class="h-48 relative"><img src="${b.image}" class="w-full h-full object-cover"><span class="absolute top-2 left-2 bg-white px-2 py-1 text-xs font-bold rounded">${b.category}</span></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">${b.name}</h3>
+                        <p class="text-gray-600 text-sm mb-2"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${b.address}</p>
+                        <p class="text-gray-600 text-sm mb-4"><i data-lucide="phone" class="w-4 h-4 inline"></i> ${b.phone}</p>
+                        <a href="https://wa.me/55${b.phone.replace(/\D/g,'')}" target="_blank" class="block text-center bg-green-100 text-green-700 py-2 rounded font-bold">WhatsApp</a>
+                    </div>
+                </div>
+            `).join('');
+            appDiv.innerHTML = `<div class="max-w-7xl mx-auto px-4 py-12"><h1 class="text-4xl font-bold mb-8 text-brand-900">Comércio Local</h1><div class="grid grid-cols-1 md:grid-cols-3 gap-8">${list || '<p>Nenhum comércio.</p>'}</div></div>`;
+        }
+
+        function renderGallery() {
+            const list = window.appData.gallery.map(g => `
+                <div class="relative group rounded-xl overflow-hidden aspect-[4/3]">
+                    <img src="${g.imageUrl}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                        <div class="text-white"><h3 class="font-bold">${g.title}</h3><p class="text-xs">Foto: ${g.photographer}</p></div>
+                    </div>
+                </div>
+            `).join('');
+            appDiv.innerHTML = `<div class="max-w-7xl mx-auto px-4 py-12"><h1 class="text-4xl font-bold mb-8 text-brand-900">Galeria</h1><div class="grid grid-cols-1 md:grid-cols-3 gap-4">${list || '<p>Nenhuma foto.</p>'}</div></div>`;
+        }
+
+        function renderHistory() {
+            const list = window.appData.history.map(h => `
+                <div class="flex gap-4 mb-8">
+                    <div class="w-20 font-bold text-brand-600 text-xl text-right shrink-0">${h.year}</div>
+                    <div class="bg-white p-4 rounded shadow w-full">
+                        <h3 class="font-bold text-lg">${h.title}</h3>
+                        <p class="text-gray-600">${h.description}</p>
+                    </div>
+                </div>
+            `).join('');
+            appDiv.innerHTML = `<div class="max-w-4xl mx-auto px-4 py-12"><h1 class="text-4xl font-bold mb-12 text-brand-900 text-center">Nossa História</h1><div>${list}</div></div>`;
+        }
+
+        function renderRadio() {
+            const { radioUrl } = window.appData.siteInfo;
+            appDiv.innerHTML = `
+                <div class="min-h-[60vh] bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+                    <h1 class="text-4xl font-bold mb-8">Rádio Nativa <span class="text-accent-500">104.9 FM</span></h1>
+                    <div class="w-full max-w-3xl aspect-video bg-black rounded-xl overflow-hidden border border-gray-700 relative">
+                        <iframe src="${radioUrl}" class="w-full h-full absolute inset-0" allow="autoplay"></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-400">Se o player não carregar, <a href="${radioUrl}" target="_blank" class="text-accent-500 underline">clique aqui</a>.</p>
+                </div>
+            `;
+        }
+
+        function renderContact() {
+            const { contactEmail, contactPhone, contactAddress } = window.appData.siteInfo;
+            appDiv.innerHTML = `
+                <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h1 class="text-4xl font-bold mb-6 text-brand-900">Contato</h1>
+                        <div class="space-y-4 text-gray-700">
+                            <p class="flex items-center gap-2"><i data-lucide="mail" class="text-brand-600"></i> ${contactEmail}</p>
+                            <p class="flex items-center gap-2"><i data-lucide="phone" class="text-brand-600"></i> ${contactPhone}</p>
+                            <p class="flex items-center gap-2"><i data-lucide="map-pin" class="text-brand-600"></i> ${contactAddress}</p>
+                        </div>
+                    </div>
+                    <form onsubmit="alert('Mensagem enviada (simulação)!'); return false;" class="bg-white p-8 rounded-xl shadow space-y-4">
+                        <input type="text" placeholder="Nome" class="w-full p-3 border rounded" required>
+                        <input type="email" placeholder="Email" class="w-full p-3 border rounded" required>
+                        <textarea placeholder="Mensagem" class="w-full p-3 border rounded h-32" required></textarea>
+                        <button class="w-full bg-brand-600 text-white py-3 rounded font-bold hover:bg-brand-700">Enviar</button>
+                    </form>
+                </div>
+            `;
+        }
+
+        function renderLogin() {
+            appDiv.innerHTML = `
+                <div class="min-h-[60vh] flex items-center justify-center p-4">
+                    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
+                        <h2 class="text-2xl font-bold mb-6 text-center">Admin</h2>
+                        <input type="password" id="admin-pass" placeholder="Senha" class="w-full p-3 border rounded mb-4">
+                        <button onclick="checkLogin()" class="w-full bg-brand-600 text-white py-3 rounded font-bold">Entrar</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.checkLogin = () => {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'Adesivo23@1999') {
+                localStorage.setItem('isAdmin', 'true');
+                router.navigate('admin');
+            } else {
+                alert('Senha incorreta');
+            }
+        };
+
+        // --- ADMIN PANEL ---
+        function renderAdmin() {
+            if (!localStorage.getItem('isAdmin')) { router.navigate('login'); return; }
+            
+            const { siteInfo } = window.appData;
+            
+            appDiv.innerHTML = `
+                <div class="max-w-6xl mx-auto px-4 py-12">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-3xl font-bold text-brand-900">Painel Admin</h1>
+                        <button onclick="localStorage.removeItem('isAdmin'); router.navigate('home')" class="text-red-600 text-sm font-bold">Sair</button>
+                    </div>
+                    
+                    <!-- Navegação do Admin -->
+                    <div class="bg-white p-4 rounded-xl shadow mb-8 border border-brand-100">
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="showAdminSection('info')" class="admin-nav-btn px-4 py-2 bg-brand-600 text-white rounded font-bold">Info Básica</button>
+                            <button onclick="showAdminSection('events')" class="admin-nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded font-bold">Eventos</button>
+                            <button onclick="showAdminSection('businesses')" class="admin-nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded font-bold">Comércio</button>
+                            <button onclick="showAdminSection('gallery')" class="admin-nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded font-bold">Galeria</button>
+                            <button onclick="showAdminSection('history')" class="admin-nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded font-bold">História</button>
+                            <button onclick="showAdminSection('contact')" class="admin-nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded font-bold">Contato</button>
+                            <button onclick="showAdminSection('export')" class="admin-nav-btn px-4 py-2 bg-green-600 text-white rounded font-bold">Exportar</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Seções do Admin -->
+                    <div id="admin-sections">
+                        <!-- Info Básica -->
+                        <div id="admin-info" class="admin-section active bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">1. Info Básica</h2>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-1">Título Principal</label>
+                                    <input type="text" id="heroTitle" value="${siteInfo.heroTitle}" class="w-full p-2 border rounded" placeholder="Título">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-1">Link da Rádio</label>
+                                    <input type="text" id="radioUrl" value="${siteInfo.radioUrl}" class="w-full p-2 border rounded" placeholder="Link da Rádio">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-1">Imagem de Capa (URL)</label>
+                                    <input type="text" id="heroBg" value="${siteInfo.heroBackgroundImage}" class="w-full p-2 border rounded" placeholder="Imagem de Capa (URL)">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-1">Subtítulo</label>
+                                    <input type="text" id="heroSubtitle" value="${siteInfo.heroSubtitle}" class="w-full p-2 border rounded" placeholder="Subtítulo">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-1">Mensagem de Boas-Vindas</label>
+                                    <textarea id="welcomeMessage" class="w-full p-2 border rounded h-20" placeholder="Mensagem de Boas-Vindas">${siteInfo.welcomeMessage}</textarea>
+                                </div>
+                            </div>
+                            <button onclick="saveInfo()" class="mt-4 bg-brand-600 text-white px-4 py-2 rounded font-bold">Salvar Info</button>
+                        </div>
+                        
+                        <!-- Eventos -->
+                        <div id="admin-events" class="admin-section bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">2. Gerenciar Eventos</h2>
+                            <div class="mb-6">
+                                <h3 class="font-bold mb-2">Adicionar Novo Evento</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input id="evtTitle" placeholder="Título" class="p-2 border rounded">
+                                    <input id="evtDate" placeholder="Data" class="p-2 border rounded">
+                                    <input id="evtLoc" placeholder="Local" class="p-2 border rounded">
+                                    <input id="evtCat" placeholder="Categoria" class="p-2 border rounded">
+                                    <input id="evtImg" placeholder="URL da Imagem" class="p-2 border rounded md:col-span-2">
+                                    <textarea id="evtDesc" placeholder="Descrição" class="p-2 border rounded md:col-span-2 h-20"></textarea>
+                                </div>
+                                <button onclick="addEvent()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded font-bold w-full">Adicionar Evento</button>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-2">Eventos Existentes</h3>
+                                <div id="events-list" class="space-y-4">
+                                    ${renderAdminEvents()}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comércio -->
+                        <div id="admin-businesses" class="admin-section bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">3. Gerenciar Comércio</h2>
+                            <div class="mb-6">
+                                <h3 class="font-bold mb-2">Adicionar Novo Comércio</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input id="busName" placeholder="Nome" class="p-2 border rounded">
+                                    <input id="busCat" placeholder="Categoria" class="p-2 border rounded">
+                                    <input id="busAddr" placeholder="Endereço" class="p-2 border rounded">
+                                    <input id="busPhone" placeholder="Telefone" class="p-2 border rounded">
+                                    <input id="busImg" placeholder="URL da Imagem" class="p-2 border rounded md:col-span-2">
+                                </div>
+                                <button onclick="addBusiness()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded font-bold w-full">Adicionar Comércio</button>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-2">Comércios Existentes</h3>
+                                <div id="businesses-list" class="space-y-4">
+                                    ${renderAdminBusinesses()}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Galeria -->
+                        <div id="admin-gallery" class="admin-section bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">4. Gerenciar Galeria</h2>
+                            <div class="mb-6">
+                                <h3 class="font-bold mb-2">Adicionar Nova Foto</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input id="galTitle" placeholder="Título" class="p-2 border rounded">
+                                    <input id="galPhotog" placeholder="Fotógrafo" class="p-2 border rounded">
+                                    <input id="galImg" placeholder="URL da Imagem" class="p-2 border rounded md:col-span-2">
+                                </div>
+                                <button onclick="addGalleryItem()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded font-bold w-full">Adicionar Foto</button>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-2">Fotos Existentes</h3>
+                                <div id="gallery-list" class="space-y-4">
+                                    ${renderAdminGallery()}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- História -->
+                        <div id="admin-history" class="admin-section bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">5. Gerenciar História</h2>
+                            <div class="mb-6">
+                                <h3 class="font-bold mb-2">Adicionar Novo Marco Histórico</h3>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input id="histYear" placeholder="Ano" class="p-2 border rounded">
+                                    <input id="histTitle" placeholder="Título" class="p-2 border rounded">
+                                    <textarea id="histDesc" placeholder="Descrição" class="p-2 border rounded md:col-span-2 h-20"></textarea>
+                                </div>
+                                <button onclick="addHistoryItem()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded font-bold w-full">Adicionar Marco</button>
+                            </div>
+                            <div>
+                                <h3 class="font-bold mb-2">Marcos Históricos Existentes</h3>
+                                <div id="history-list" class="space-y-4">
+                                    ${renderAdminHistory()}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contato -->
+                        <div id="admin-contact" class="admin-section bg-white p-6 rounded-xl shadow mb-8 border border-brand-100">
+                            <h2 class="font-bold text-xl mb-4">6. Informações de Contato</h2>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-1">Email</label>
+                                    <input type="text" id="contactEmail" value="${siteInfo.contactEmail}" class="w-full p-2 border rounded" placeholder="Email">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-1">Telefone</label>
+                                    <input type="text" id="contactPhone" value="${siteInfo.contactPhone}" class="w-full p-2 border rounded" placeholder="Telefone">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-1">Endereço</label>
+                                    <input type="text" id="contactAddress" value="${siteInfo.contactAddress}" class="w-full p-2 border rounded" placeholder="Endereço">
+                                </div>
+                            </div>
+                            <button onclick="saveContactInfo()" class="mt-4 bg-brand-600 text-white px-4 py-2 rounded font-bold">Salvar Contato</button>
+                        </div>
+                        
+                        <!-- Exportar -->
+                        <div id="admin-export" class="admin-section bg-green-50 p-6 rounded-xl shadow border border-green-200">
+                            <h2 class="font-bold text-xl mb-2 text-green-900">7. Exportar Site</h2>
+                            <p class="text-sm mb-4 text-green-800">Gere o código HTML atualizado para implantar online.</p>
+                            <textarea readonly class="w-full h-64 p-2 text-xs font-mono bg-white rounded border" id="exportArea"></textarea>
+                            <div class="flex gap-2 mt-4">
+                                <button onclick="generateExport()" class="bg-green-700 text-white px-4 py-2 rounded font-bold">Gerar Código</button>
+                                <button onclick="downloadHTML()" class="bg-blue-700 text-white px-4 py-2 rounded font-bold">Baixar HTML</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Inicializar navegação do admin
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.admin-nav-btn').forEach(b => {
+                        b.classList.remove('bg-brand-600', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    this.classList.add('bg-brand-600', 'text-white');
+                });
+            });
+        }
+
+        // Funções auxiliares para renderizar listas no admin
+        function renderAdminEvents() {
+            return window.appData.events.map(e => `
+                <div class="flex items-center justify-between p-3 border rounded">
+                    <div>
+                        <h4 class="font-bold">${e.title}</h4>
+                        <p class="text-sm text-gray-600">${e.date} - ${e.location}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editEvent('${e.id}')" class="text-blue-600"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                        <button onclick="deleteEvent('${e.id}')" class="text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminBusinesses() {
+            return window.appData.businesses.map(b => `
+                <div class="flex items-center justify-between p-3 border rounded">
+                    <div>
+                        <h4 class="font-bold">${b.name}</h4>
+                        <p class="text-sm text-gray-600">${b.category} - ${b.address}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editBusiness('${b.id}')" class="text-blue-600"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                        <button onclick="deleteBusiness('${b.id}')" class="text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminGallery() {
+            return window.appData.gallery.map(g => `
+                <div class="flex items-center justify-between p-3 border rounded">
+                    <div>
+                        <h4 class="font-bold">${g.title}</h4>
+                        <p class="text-sm text-gray-600">Foto: ${g.photographer}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editGalleryItem('${g.id}')" class="text-blue-600"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                        <button onclick="deleteGalleryItem('${g.id}')" class="text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminHistory() {
+            return window.appData.history.map(h => `
+                <div class="flex items-center justify-between p-3 border rounded">
+                    <div>
+                        <h4 class="font-bold">${h.year} - ${h.title}</h4>
+                        <p class="text-sm text-gray-600">${h.description}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editHistoryItem('${h.id}')" class="text-blue-600"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                        <button onclick="deleteHistoryItem('${h.id}')" class="text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Navegação do admin
+        window.showAdminSection = (section) => {
+            document.querySelectorAll('.admin-section').forEach(s => {
+                s.classList.remove('active');
+            });
+            document.getElementById(`admin-${section}`).classList.add('active');
+        };
+
+        // --- DATA ACTIONS (Admin) ---
+        window.saveInfo = () => {
+            const newInfo = {
+                ...window.appData.siteInfo,
+                heroTitle: document.getElementById('heroTitle').value,
+                heroSubtitle: document.getElementById('heroSubtitle').value,
+                welcomeMessage: document.getElementById('welcomeMessage').value,
+                radioUrl: document.getElementById('radioUrl').value,
+                heroBackgroundImage: document.getElementById('heroBg').value
+            };
+            window.appData.siteInfo = newInfo;
+            db.set('siteInfo', newInfo);
+            alert('Informações básicas salvas!');
+        };
+
+        window.saveContactInfo = () => {
+            const newInfo = {
+                ...window.appData.siteInfo,
+                contactEmail: document.getElementById('contactEmail').value,
+                contactPhone: document.getElementById('contactPhone').value,
+                contactAddress: document.getElementById('contactAddress').value
+            };
+            window.appData.siteInfo = newInfo;
+            db.set('siteInfo', newInfo);
+            alert('Informações de contato salvas!');
+        };
+
+        window.addEvent = () => {
+            const newEvt = {
+                id: Date.now().toString(),
+                title: document.getElementById('evtTitle').value,
+                date: document.getElementById('evtDate').value,
+                location: document.getElementById('evtLoc').value,
+                category: document.getElementById('evtCat').value,
+                description: document.getElementById('evtDesc').value,
+                image: document.getElementById('evtImg').value || 'https://picsum.photos/600/400'
+            };
+            window.appData.events.push(newEvt);
+            db.set('events', window.appData.events);
+            alert('Evento adicionado!');
+            renderAdmin(); // Recarrega a página admin
+        };
+
+        window.addBusiness = () => {
+            const newBus = {
+                id: Date.now().toString(),
+                name: document.getElementById('busName').value,
+                category: document.getElementById('busCat').value,
+                address: document.getElementById('busAddr').value,
+                phone: document.getElementById('busPhone').value,
+                image: document.getElementById('busImg').value || 'https://picsum.photos/600/400'
+            };
+            window.appData.businesses.push(newBus);
+            db.set('businesses', window.appData.businesses);
+            alert('Comércio adicionado!');
+            renderAdmin(); // Recarrega a página admin
+        };
+
+        window.addGalleryItem = () => {
+            const newGal = {
+                id: Date.now().toString(),
+                title: document.getElementById('galTitle').value,
+                photographer: document.getElementById('galPhotog').value,
+                imageUrl: document.getElementById('galImg').value || 'https://picsum.photos/800/600',
+                date: new Date().getFullYear().toString()
+            };
+            window.appData.gallery.push(newGal);
+            db.set('gallery', window.appData.gallery);
+            alert('Foto adicionada à galeria!');
+            renderAdmin(); // Recarrega a página admin
+        };
+
+        window.addHistoryItem = () => {
+            const newHist = {
+                id: Date.now().toString(),
+                year: document.getElementById('histYear').value,
+                title: document.getElementById('histTitle').value,
+                description: document.getElementById('histDesc').value
+            };
+            window.appData.history.push(newHist);
+            db.set('history', window.appData.history);
+            alert('Marco histórico adicionado!');
+            renderAdmin(); // Recarrega a página admin
+        };
+
+        // Funções de edição e exclusão (simplificadas)
+        window.deleteEvent = (id) => {
+            if (confirm('Tem certeza que deseja excluir este evento?')) {
+                window.appData.events = window.appData.events.filter(e => e.id !== id);
+                db.set('events', window.appData.events);
+                renderAdmin(); // Recarrega a página admin
+            }
+        };
+
+        window.deleteBusiness = (id) => {
+            if (confirm('Tem certeza que deseja excluir este comércio?')) {
+                window.appData.businesses = window.appData.businesses.filter(b => b.id !== id);
+                db.set('businesses', window.appData.businesses);
+                renderAdmin(); // Recarrega a página admin
+            }
+        };
+
+        window.deleteGalleryItem = (id) => {
+            if (confirm('Tem certeza que deseja excluir esta foto?')) {
+                window.appData.gallery = window.appData.gallery.filter(g => g.id !== id);
+                db.set('gallery', window.appData.gallery);
+                renderAdmin(); // Recarrega a página admin
+            }
+        };
+
+        window.deleteHistoryItem = (id) => {
+            if (confirm('Tem certeza que deseja excluir este marco histórico?')) {
+                window.appData.history = window.appData.history.filter(h => h.id !== id);
+                db.set('history', window.appData.history);
+                renderAdmin(); // Recarrega a página admin
+            }
+        };
+
+        // Funções de edição (simplificadas - apenas abrem um prompt)
+        window.editEvent = (id) => {
+            const event = window.appData.events.find(e => e.id === id);
+            if (event) {
+                const newTitle = prompt('Novo título:', event.title);
+                if (newTitle !== null) {
+                    event.title = newTitle;
+                    db.set('events', window.appData.events);
+                    renderAdmin(); // Recarrega a página admin
+                }
+            }
+        };
+
+        // Função para gerar o código HTML completo
+        window.generateExport = () => {
+            // Esta função geraria o HTML completo com os dados atualizados
+            // Por simplicidade, vamos apenas mostrar os dados em JSON
+            const code = `// DADOS ATUALIZADOS DO SITE EXPO SANTANA BA\nconst DEFAULT_DATA = ${JSON.stringify(window.appData, null, 2)};`;
+            document.getElementById('exportArea').value = code;
+        };
+
+        // Função para baixar o HTML atualizado
+        window.downloadHTML = () => {
+            // Esta função criaria um arquivo HTML completo para download
+            // Por simplicidade, vamos apenas criar um arquivo com os dados
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(window.appData, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "expo-santana-data.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            alert('Dados exportados com sucesso! Para atualizar o site online, substitua os dados no arquivo HTML.');
+        };
+
+        // --- AI GUIDE ---
+        window.toggleChat = () => {
+            const chat = document.getElementById('chat-window');
+            chat.classList.toggle('hidden');
+            chat.classList.toggle('flex');
+        }
+
+        window.sendMessage = async () => {
+            const input = document.getElementById('chat-input');
+            const msg = input.value;
+            if(!msg) return;
+            
+            const container = document.getElementById('chat-messages');
+            container.innerHTML += `<div class="flex justify-end"><div class="bg-brand-600 text-white p-3 rounded-2xl rounded-br-none">${msg}</div></div>`;
+            input.value = '';
+            
+            // Simulate AI response
+            container.innerHTML += `<div class="flex justify-start"><div class="bg-white border p-3 rounded-2xl rounded-bl-none text-gray-800">Estou simulando a resposta pois estamos em modo estático (sem servidor). Em um ambiente real, eu responderia sobre: "${msg}"</div></div>`;
+            container.scrollTop = container.scrollHeight;
+        };
+
+        // --- INITIALIZATION ---
+        window.toggleMobileMenu = () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function updateFooter() {
+            const { contactEmail, contactAddress } = window.appData.siteInfo;
+            document.getElementById('footer-contact').innerHTML = `
+                <li><i data-lucide="mail" class="w-4 h-4 inline"></i> ${contactEmail}</li>
+                <li><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${contactAddress}</li>
+            `;
+        }
+
+        // Start App
+        lucide.createIcons();
+        router.navigate('home');
+    </script>
+</body>
+</html>
